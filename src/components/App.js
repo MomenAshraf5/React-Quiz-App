@@ -80,11 +80,12 @@ export default function App() {
     0
   );
   useEffect(function () {
-    fetch("http://localhost:8000/questions")
+    fetch(process.env.PUBLIC_URL + "/questions.json")
       .then((res) => res.json())
       .then((data) => dispatch({ type: "dataReceived", payload: data }))
-      .catch((err) => dispatch({ type: "dataFailed" }));
+      .catch(() => dispatch({ type: "dataFailed" }));
   }, []);
+
   return (
     <div className="app">
       <Header />
